@@ -1,6 +1,6 @@
 import React from 'react'
 import { act, render, screen, waitFor } from '@testing-library/react'
-import { FadeInOut } from './FadeInOut'
+import { FadeInOutByCSS } from './FadeInOutByCSS'
 import userEvent from '@testing-library/user-event'
 
 import { config } from 'react-transition-group'
@@ -14,7 +14,7 @@ describe('config.disabled true', () => {
   })
 
   it('should fade in', async () => {
-    render(<FadeInOut />)
+    render(<FadeInOutByCSS />)
     const button = await screen.findByTestId('button')
     expect(button).toBeInTheDocument()
 
@@ -37,7 +37,7 @@ describe('jest fakeTimers', () => {
   })
 
   it('should fade in', async () => {
-    render(<FadeInOut />)
+    render(<FadeInOutByCSS />)
     const button = await screen.findByTestId('button')
     expect(button).toBeInTheDocument()
 
@@ -45,7 +45,7 @@ describe('jest fakeTimers', () => {
 
     userEvent.click(button)
     act(() => {
-      jest.advanceTimersByTime(100)
+      jest.advanceTimersByTime(1000)
     })
 
     expect(config.disabled).toBe(false)
